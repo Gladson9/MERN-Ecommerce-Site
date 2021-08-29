@@ -13,7 +13,7 @@ const Card = ({
   const [redirect, setredirect] = useState(false);
   const [count, setCount] = useState(product.count);
   const cardTitle = product ? product.name : "A photo from pexels";
-  const carddescription = product ? product.description : "Default Description";
+  const cardAuthor = product ? product.author : "Default Author";
   const cardPrice = product ? product.price : "Default Price";
 
   const addToCart = () => {
@@ -27,10 +27,7 @@ const Card = ({
   const showAddToCart = (AddToCart) => {
     return (
       AddToCart && (
-        <button
-          onClick={addToCart}
-          className="btn btn-block btn-outline-success mt-2 mb-2"
-        >
+        <button onClick={addToCart} className="btn btn-warning">
           Add to Cart
         </button>
       )
@@ -44,7 +41,7 @@ const Card = ({
             removeItemFromCart(product._id);
             setReload(!reload);
           }}
-          className="btn btn-block btn-outline-danger mt-2 mb-2"
+          className="btn btn-danger"
         >
           Remove from cart
         </button>
@@ -52,18 +49,18 @@ const Card = ({
     );
   };
   return (
-    <div className="card text-white bg-dark border border-info ">
-      <div className="card-header lead">{cardTitle}</div>
-      <div className="card-body">
+    <div className="row card text-white">
+      <div className="col-10 my-3">
         {getRedirect(redirect)}
         <ImageHelper product={product} />
-        <p className="lead bg-success font-weight-normal text-wrap">
-          {carddescription}
-        </p>
-        <p className="btn btn-success rounded  btn-sm px-4">$ {cardPrice}</p>
-        <div className="row">
-          <div className="col-12">{showAddToCart(AddToCart)}</div>
-          <div className="col-12">{showRemoveFromCart(removeFromCart)}</div>
+        <div className=" ms-1">{cardTitle}</div>
+        <div className=" ms-1">
+          By <span className="text-white-50"> {cardAuthor}</span>
+        </div>
+        <p className=" ms-2 fw-bold text-danger fs-4">$ {cardPrice}</p>
+        <div className="col-12">
+          <div>{showAddToCart(AddToCart)}</div>
+          <div>{showRemoveFromCart(removeFromCart)}</div>
         </div>
       </div>
     </div>

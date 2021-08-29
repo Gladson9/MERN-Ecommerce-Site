@@ -23,18 +23,19 @@ const Home = () => {
     loadAllProducts();
   }, []);
   return (
-    <Base title="My Store" description="Welcome to the store">
-      <div className="row text-center">
-        <h1 className="text-white">All of tshirts</h1>
-        <div className="row">
-          {products.map((product, index) => {
-            return (
-              <div key={index} className="col-4 mb-4">
-                <Card product={product} />
-              </div>
-            );
-          })}
-        </div>
+    <Base title="Popular Books" description="">
+      {/* <h1 className="text-white">All of tshirts</h1> */}
+      <div className="row row-cols-4 text-center">
+        {products.map((product, index) => {
+          return (
+            <div
+              key={index}
+              className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-4"
+            >
+              <Card product={product} />
+            </div>
+          );
+        })}
       </div>
     </Base>
   );

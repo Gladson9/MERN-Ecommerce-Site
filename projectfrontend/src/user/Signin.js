@@ -48,7 +48,8 @@ const Signin = () => {
       if (user && user.role === 1) {
         return <Redirect to="/admin/dashboard" />;
       } else {
-        return <Redirect to="/user/dashboard" />;
+        // return <Redirect to="/user/dashboard" />;
+        return <Redirect to="/" />;
       }
     }
     if (isAuthenticated()) {
@@ -82,31 +83,28 @@ const Signin = () => {
 
   const signInForm = () => {
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <form>
-            <div className="mb-3">
-              <label className="form-label">Email</label>
+      <div className="row justify-content-center">
+        <div className="col-6">
+          <form className="row justify-content-center">
+            <div className="mb-4 p-0">
               <input
                 onChange={handleChange("email")}
                 value={email}
-                className="form-control"
+                className="form-control rounded-pill  px-4"
                 type="email"
+                placeholder="Email"
               />
             </div>
-            <div className="mb-3">
-              <label className="form-label">Password</label>
+            <div className="mb-4 p-0">
               <input
                 onChange={handleChange("password")}
                 value={password}
-                className="form-control"
+                className="form-control rounded-pill  px-4"
                 type="password"
+                placeholder="Password"
               />
             </div>
-            <button
-              onClick={onSubmit}
-              className="btn-success btn btn-block center"
-            >
+            <button onClick={onSubmit} className="btn-success btn rounded-pill">
               Submit
             </button>
           </form>
@@ -116,12 +114,12 @@ const Signin = () => {
   };
 
   return (
-    <Base title="SignIn page" description="A page for user to SignIn">
+    <Base title="SignIn">
       {loadingMessage()}
       {errorMessage()}
       {signInForm()}
       {performRedirect()}
-      <p className="text-white text-center">{JSON.stringify(values)}</p>
+      {/* <p className="text-white text-center">{JSON.stringify(values)}</p> */}
     </Base>
   );
 };

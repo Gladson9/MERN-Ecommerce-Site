@@ -1,16 +1,13 @@
-.btn,
-.jumbotron,
-.nav :hover {
-  border-radius: 0px;
-}
-
 body {
   /* background: #343a40; */
   background: #212529;
 }
 
-footer {
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
+.logo {
+  letter-spacing: 0.7rem;
+}
+
+.card {
+  background-color: transparent;
+  border: none;
 }

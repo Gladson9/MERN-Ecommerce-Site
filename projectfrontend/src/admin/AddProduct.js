@@ -8,7 +8,7 @@ const AddProduct = () => {
   const { user, token } = isAuthenticated();
   const [values, setValues] = useState({
     name: "",
-    description: "",
+    author: "",
     price: "",
     stock: "",
     photo: "",
@@ -23,7 +23,7 @@ const AddProduct = () => {
 
   const {
     name,
-    description,
+    author,
     price,
     stock,
     categories,
@@ -88,7 +88,7 @@ const AddProduct = () => {
           setValues({
             ...values,
             name: "",
-            description: "",
+            author: "",
             price: "",
             photo: "",
             stock: "",
@@ -116,7 +116,6 @@ const AddProduct = () => {
       <div className="input-group mb-3">
         <input
           onChange={handleChange("name")}
-          name="photo"
           className="form-control"
           placeholder="Name"
           value={name}
@@ -124,12 +123,11 @@ const AddProduct = () => {
         />
       </div>
       <div className="input-group mb-3">
-        <textarea
-          onChange={handleChange("description")}
-          name="photo"
+        <input
+          onChange={handleChange("author")}
           className="form-control"
-          placeholder="Description"
-          value={description}
+          placeholder="Author"
+          value={author}
         />
       </div>
       <div className="input-group mb-3">

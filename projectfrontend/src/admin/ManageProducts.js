@@ -33,7 +33,7 @@ const ManageProducts = () => {
   };
 
   return (
-    <Base title="Welcome admin" description="Manage products here">
+    <Base title="Manage Products">
       <h2 className="mb-4">All products:</h2>
       <Link className="btn btn-info" to={`/admin/dashboard`}>
         <span className="">Admin Home</span>

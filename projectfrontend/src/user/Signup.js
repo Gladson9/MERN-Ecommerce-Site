@@ -43,37 +43,37 @@ const Signup = () => {
 
   const signUpForm = () => {
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <form>
-            <div className="mb-3">
-              <label className="form-label">Name</label>
+      <div className="row justify-content-center">
+        <div className="col-6">
+          <form className="row justify-content-center">
+            <div className="mb-4 p-0">
               <input
-                className="form-control"
+                className="form-control rounded-pill  px-4"
                 onChange={handleChange("name")}
                 type="text"
                 value={name}
+                placeholder="Name"
               />
             </div>
-            <div className="mb-3">
-              <label className="form-label">Email</label>
+            <div className="mb-4 p-0">
               <input
-                className="form-control"
+                className="form-control rounded-pill px-4"
                 onChange={handleChange("email")}
                 type="email"
                 value={email}
+                placeholder="Email"
               />
             </div>
-            <div className="mb-3">
-              <label className="form-label">Password</label>
+            <div className="mb-4 p-0">
               <input
-                className="form-control"
+                className="form-control rounded-pill px-4"
                 onChange={handleChange("password")}
                 type="password"
                 value={password}
+                placeholder="Password"
               />
             </div>
-            <button onClick={onSubmit} className="btn-success btn btn-block">
+            <button onClick={onSubmit} className="btn-success btn rounded-pill">
               Submit
             </button>
           </form>
@@ -114,12 +114,12 @@ const Signup = () => {
   };
 
   return (
-    <Base title="SignUp page" description="A page for user to sign up">
+    <Base title="SignUp">
       {successMessage()}
       {errorMessage()}
       {signUpForm()}
 
-      <p className="text-white text-center">{JSON.stringify(values)}</p>
+      {/* <p className="text-white text-center">{JSON.stringify(values)}</p> */}
     </Base>
   );
 };

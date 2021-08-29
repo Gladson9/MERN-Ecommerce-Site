@@ -5,7 +5,7 @@ import { isAuthenticated, signout } from "../auth/helper";
 const currentTab = (history, path) => {
   //history is provided by Link
   if (history.location.pathname === path) {
-    return { color: "#2ecc72" };
+    return { color: "#ffc107" };
   } else {
     return { color: "#FFFFFF" };
   }
@@ -13,84 +13,84 @@ const currentTab = (history, path) => {
 
 const Menu = ({ history }) => {
   return (
-    <div>
-      <ul className="nav nav-tabs bg-dark">
-        <li className="nav-item">
+    <nav className="my-5">
+      <ul className="nav justify-content-center ">
+        <li className="nav-item mx-2">
           <Link style={currentTab(history, "/")} className="nav-link" to="/">
-            Home
+            HOME
           </Link>
         </li>
-        <li className="nav-item">
+        <li className="nav-item mx-2">
           <Link
             style={currentTab(history, "/cart")}
             className="nav-link"
             to="/cart"
           >
-            Cart
+            CART
           </Link>
         </li>
-        {isAuthenticated() && isAuthenticated().user.role === 0 && (
-          <li className="nav-item">
+        {/* {isAuthenticated() && isAuthenticated().user.role === 0 && (
+          <li className="nav-item mx-2">
             <Link
               style={currentTab(history, "/user/dashboard")}
               className="nav-link"
               to="/user/dashboard"
             >
-              Dashboard
+              DASHBOARD
             </Link>
           </li>
-        )}
+        )} */}
         {isAuthenticated() && isAuthenticated().user.role === 1 && (
-          <li className="nav-item">
+          <li className="nav-item mx-2">
             <Link
               style={currentTab(history, "/admin/dashboard")}
               className="nav-link"
               to="/admin/dashboard"
             >
-              A. Dashboard
+              A. DASHBOARD
             </Link>
           </li>
         )}
 
         {!isAuthenticated() && (
           <>
-            <li className="nav-item">
+            <li className="nav-item mx-2">
               <Link
                 style={currentTab(history, "/signup")}
                 className="nav-link"
                 to="/signup"
               >
-                SignUp
+                SIGNUP
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item mx-2">
               <Link
                 style={currentTab(history, "/signin")}
                 className="nav-link"
                 to="/signin"
               >
-                SignIn
+                SIGNIN
               </Link>
             </li>
           </>
         )}
 
         {isAuthenticated() && (
-          <li className="nav-item">
+          <li className="nav-item mx-2">
             <span
-              className="nav-link text-warning"
+              className="nav-link text-danger"
               onClick={() => {
                 signout(() => {
                   history.push("/");
                 });
               }}
             >
-              Signout
+              SIGNOUT
             </span>
           </li>
         )}
       </ul>
-    </div>
+    </nav>
   );
 };
 

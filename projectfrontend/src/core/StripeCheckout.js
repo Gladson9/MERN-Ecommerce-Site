@@ -9,7 +9,7 @@ import { emptyCart, loadCart } from "./helper/cartHelper";
 
 const StripeCheckout = ({
   products,
-  serReload = (f) => f,
+  setReload = (f) => f,
   reload = undefined,
 }) => {
   const [data, setData] = useState({
@@ -74,7 +74,7 @@ const StripeCheckout = ({
 
   return (
     <div>
-      <h3 className="text-white">Stripe Checkout {getFinalPrice()}</h3>
+      <h3 className="text-white mb-5">Total Amount ${getFinalPrice()}</h3>
       {showStripeButton()}
     </div>
   );

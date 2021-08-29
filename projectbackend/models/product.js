@@ -7,13 +7,13 @@ const productSchema = new mongoose.Schema(
       type: String,
       trim: true,
       required: true,
-      maxlength: 32,
+      maxlength: 50,
     },
-    description: {
+    author: {
       type: String,
       trim: true,
       required: true,
-      maxlength: 2000,
+      maxlength: 50,
     },
     price: {
       type: Number,

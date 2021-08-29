@@ -30,8 +30,8 @@ exports.createProduct = (req, res) => {
       });
     }
     // destructuring the fields
-    const { name, description, price, category, stock } = fields;
-    if (!name || !description || !price || !category || !stock) {
+    const { name, author, price, category, stock } = fields;
+    if (!name || !author || !price || !category || !stock) {
       return res.status(400).json({
         error: "Please include all fields",
       });

@@ -77,6 +77,7 @@ const BraintreePayment = ({
       <div>
         {info.clientToken !== null && products.length > 0 ? (
           <div>
+            <h3>Braintree Payment</h3>
             <DropIn
               options={{ authorization: info.clientToken }}
               onInstance={(instance) => (info.instance = instance)}
@@ -94,12 +95,7 @@ const BraintreePayment = ({
     getaToken(userId, token);
   }, []);
 
-  return (
-    <div>
-      <h3>TEST Braintree</h3>
-      {showBraintreeBtnDropIn()}
-    </div>
-  );
+  return <div className="col-10">{showBraintreeBtnDropIn()}</div>;
 };
 
 export default BraintreePayment;

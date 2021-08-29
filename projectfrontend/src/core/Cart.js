@@ -15,10 +15,10 @@ const Cart = () => {
   useEffect(() => {
     setProducts(loadCart());
   }, [reload]);
+
   const loadAllProducts = (products) => {
     return (
-      <div>
-        <h2>This section is to load products</h2>
+      <div className="row row-cols-xl-2  row-cols-md-2 row-cols-sm-1">
         {products.map((product, index) => (
           <Card
             key={index}
@@ -32,16 +32,9 @@ const Cart = () => {
       </div>
     );
   };
-  const loadCheckout = () => {
-    return (
-      <div>
-        <h2>This section is for checkout</h2>
-      </div>
-    );
-  };
 
   return (
-    <Base title="Cart Page" description="Ready To Checkout">
+    <Base title="Your Basket">
       <div className="row text-center">
         <div className="col-6">
           {products.length > 0 ? (
@@ -50,12 +43,13 @@ const Cart = () => {
             <h3>No Products in Cart</h3>
           )}
         </div>
-        <div className="col-6">
+        <div className="row col-6 justify-content-center align-content-start">
           <StripeCheckout
             products={products}
             setReload={setReload}
             reload={reload}
           />
+          <div className="text-center my-4 fs-3 fw-bold">or</div>
           <BraintreePayment products={products} setReload={setReload} />
         </div>
       </div>
