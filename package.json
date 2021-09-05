@@ -4,7 +4,13 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "backend":"nodemon app.js",
+    "frontend": "npm run start --prefix projectfrontend",
+    "build-frontend": "cd projectfrontend && npm run build",
+    "install-client": "cd projectfrontend && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "dev": "concurrently \"npm run backend\" \"npm run start --prefix projectfrontend\""
   },
   "keywords": [],
   "author": "",

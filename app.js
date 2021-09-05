@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const app = express();
-
+const path = require("path");
 // My Routes
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
@@ -51,3 +51,12 @@ const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`app is running at ${port}`);
 });
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("/projectfrontend/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "projectfrontend", "build", "index.html")
+    );
+  });
+}
