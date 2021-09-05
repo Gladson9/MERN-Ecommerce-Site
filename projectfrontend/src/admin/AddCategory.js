@@ -14,7 +14,10 @@ const AddCategory = () => {
   const goBack = () => {
     return (
       <div className="mt-5">
-        <Link className="btn btn-sm btn-info mb-3" to="/admin/dashboard">
+        <Link
+          className="btn btn-sm btn-info py-2 px-3 mb-3"
+          to="/admin/dashboard"
+        >
           Admin Home
         </Link>
       </div>
@@ -57,7 +60,7 @@ const AddCategory = () => {
     return (
       <form className="py-2">
         <div className="form-group">
-          <p className="lead">Enter the category</p>
+          <p className="lead fs-4 fw-bold">Enter the category</p>
           <input
             type="text"
             className="form-control my-3"
@@ -65,7 +68,7 @@ const AddCategory = () => {
             value={name}
             autoFocus
             required
-            placeholder="For Ex. Summer"
+            placeholder="For Ex. Education"
           />
           <button onClick={onSubmit} className="btn btn-outline-info">
             Create Category
@@ -75,17 +78,13 @@ const AddCategory = () => {
     );
   };
   return (
-    <Base
-      title="Create a category"
-      description="Add a new category for the products"
-      className="container bg-info p-4"
-    >
-      <div className="row bg-white rounded">
+    <Base title="Create a category" className="container p-4">
+      <div className="row text-white rounded">
         <div className="col-md-8 offset-md-2">
           {successMessage()}
           {warningMessage()}
-          {myCategoryForm()}
           {goBack()}
+          {myCategoryForm()}
         </div>
       </div>
     </Base>

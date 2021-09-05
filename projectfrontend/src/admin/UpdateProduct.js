@@ -10,11 +10,11 @@ import {
 
 const UpdateProduct = ({ match }) => {
   //match is an object which has url and some other info
-  //   console.log("MATCH", match);
+  // console.log("MATCH", match);
   const { user, token } = isAuthenticated();
   const [values, setValues] = useState({
     name: "",
-    description: "",
+    author: "",
     price: "",
     stock: "",
     photo: "",
@@ -29,7 +29,7 @@ const UpdateProduct = ({ match }) => {
 
   const {
     name,
-    description,
+    author,
     price,
     stock,
     categories,
@@ -53,12 +53,13 @@ const UpdateProduct = ({ match }) => {
         setValues({
           ...values,
           name: data.name,
-          description: data.description,
+          author: data.author,
           price: data.price,
           category: data.category._id,
           stock: data.stock,
           formData: new FormData(),
         });
+        console.log("Values ", values);
         // console.log("Categories", categories);
       }
     });
@@ -112,15 +113,15 @@ const UpdateProduct = ({ match }) => {
   const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: "", loading: true });
-    updateProduct(match.params.productId, user._id, token, formData)
-      .then((data) => {
+    updateProduct(match.params.productId, user._id, token, formData).then(
+      (data) => {
         if (data.error) {
           setValues({ ...values, error: data.error });
         } else {
           setValues({
             ...values,
             name: "",
-            description: "",
+            author: "",
             price: "",
             photo: "",
             stock: "",
@@ -128,8 +129,8 @@ const UpdateProduct = ({ match }) => {
             createdProduct: data.name,
           });
         }
-      })
-      .catch();
+      }
+    );
   };
   const createProductForm = () => (
     <form>
@@ -156,12 +157,13 @@ const UpdateProduct = ({ match }) => {
         />
       </div>
       <div className="input-group mb-3">
-        <textarea
-          onChange={handleChange("description")}
-          name="photo"
+        <input
+          type="text"
+          onChange={handleChange("author")}
+          name="author"
           className="form-control"
-          placeholder="Description"
-          value={description}
+          placeholder="Author"
+          value={author}
         />
       </div>
       <div className="input-group mb-3">
@@ -208,11 +210,7 @@ const UpdateProduct = ({ match }) => {
     </form>
   );
   return (
-    <Base
-      title="Add a Product here!"
-      description="Welcome to product creation section"
-      className="container bg-info p-4"
-    >
+    <Base title="Update Product here!" className="container bg-info p-4">
       <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
         Admin Home
       </Link>

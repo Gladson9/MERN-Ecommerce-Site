@@ -8,8 +8,8 @@ exports.getCategoryById = (req, res, next, id) => {
       });
     }
     req.category = category;
+    next();
   });
-  next();
 };
 
 exports.createCategory = (req, res) => {
@@ -25,6 +25,7 @@ exports.createCategory = (req, res) => {
 };
 
 exports.getCategory = (req, res) => {
+  // console.log("BACKEND GET CATEGORY: ", req.category);
   return res.json(req.category); //gets values from getCategoryById
 };
 

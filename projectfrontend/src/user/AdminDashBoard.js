@@ -4,36 +4,36 @@ import Base from "../core/Base";
 
 const AdminDashBoard = () => {
   const {
-    user: { name, email, role },
+    user: { name, email },
   } = isAuthenticated();
 
   const adminLeftSide = () => {
     return (
       <div className="card">
-        <h4 className="card-header bg-dark text-white">Admin Navigation</h4>
+        <h4 className="card-header bg-info text-black">Admin Navigation</h4>
         <ul className="list-group">
           <li className="list-group-item">
-            <Link to="/admin/create/category" className="nav-link text-info">
+            <Link to="/admin/create/category" className="nav-link text-black">
               Create Category
             </Link>
           </li>
           <li className="list-group-item">
-            <Link to="/admin/categories" className="nav-link text-info">
+            <Link to="/admin/categories" className="nav-link text-black">
               Manage Categories
             </Link>
           </li>
           <li className="list-group-item">
-            <Link to="/admin/create/product" className="nav-link text-info">
+            <Link to="/admin/create/product" className="nav-link text-black">
               Create Product
             </Link>
           </li>
           <li className="list-group-item">
-            <Link to="/admin/products" className="nav-link text-info">
+            <Link to="/admin/products" className="nav-link text-black">
               Manage Product
             </Link>
           </li>
           <li className="list-group-item">
-            <Link to="/admin/orders" className="nav-link text-info">
+            <Link to="/admin/orders" className="nav-link text-black">
               Manage Orders
             </Link>
           </li>
@@ -45,7 +45,7 @@ const AdminDashBoard = () => {
   const adminRightSide = () => {
     return (
       <div className="card mb-4">
-        <h4 className="card-header">Admin Information</h4>
+        <h4 className="card-header bg-info">Admin Information</h4>
         <ul className="list-group">
           <li className="list-group-item">
             <span className="badge bg-info mr-2 p-2">Name:</span> {name}
@@ -54,18 +54,14 @@ const AdminDashBoard = () => {
             <span className="badge bg-info mr-2 p-2">Email:</span> {email}
           </li>
           <li className="list-group-item">
-            <span className="badge bg-danger">Admin Area</span>
+            <span className="badge bg-danger p-2">Admin Area</span>
           </li>
         </ul>
       </div>
     );
   };
   return (
-    <Base
-      title="Welcome to Admin Dashboard"
-      description="Manage all your products here"
-      className="container bg-info p-4"
-    >
+    <Base title="Welcome to Admin Dashboard" className="container p-4">
       <div className="row">
         <div className="col-3">{adminLeftSide()}</div>
         <div className="col-9">{adminRightSide()}</div>
