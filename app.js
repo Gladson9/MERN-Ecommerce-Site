@@ -53,7 +53,6 @@ app.listen(port, () => {
 });
 
 if (process.env.NODE_ENV == "production") {
-  console.log("DIRECTORY NAME: ", __dirname);
   app.use(express.static(path.join(__dirname, "/projectfrontend/build")));
   app.get("*", (req, res) => {
     res.sendFile(

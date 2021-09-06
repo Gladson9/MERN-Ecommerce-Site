@@ -8,7 +8,7 @@ import { createOrder } from "./helper/orderHelper";
 import { emptyCart, loadCart } from "./helper/cartHelper";
 
 const StripeCheckout = ({
-  products,
+  products = [],
   setReload = (f) => f,
   reload = undefined,
 }) => {
@@ -48,7 +48,7 @@ const StripeCheckout = ({
 
         const { status } = response;
         console.log("STATUS", status);
-        // emptyCart();
+        emptyCart();
         // createOrder
       })
       .catch((err) => console.log(err));

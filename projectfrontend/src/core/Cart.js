@@ -1,4 +1,3 @@
-import { prettyDOM } from "@testing-library/react";
 import React, { useEffect, useState } from "react";
 
 import "../styles.css";
@@ -37,7 +36,7 @@ const Cart = () => {
     <Base title="Your Basket">
       <div className="row text-center">
         <div className="col-6">
-          {products.length > 0 ? (
+          {products && products.length > 0 ? (
             loadAllProducts(products)
           ) : (
             <h3>No Products in Cart</h3>

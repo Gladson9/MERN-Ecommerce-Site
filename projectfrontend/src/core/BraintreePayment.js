@@ -7,7 +7,7 @@ import { isAuthenticated } from "../auth/helper/index";
 import DropIn from "braintree-web-drop-in-react";
 
 const BraintreePayment = ({
-  products,
+  products = [],
   setReload = (f) => f,
   reload = undefined,
 }) => {

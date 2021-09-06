@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { withRouter } from "react-router-dom";
-import { API } from "../backend";
 import "../styles.css";
 import Base from "./Base";
 import Card from "./Card";
