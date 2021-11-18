@@ -1,15 +1,25 @@
-export const addItemToCart = (item, next) => {
+export const addItemToCart = (item) => {
   let cart = [];
   if (typeof window !== undefined) {
     if (localStorage.getItem("cart")) {
       cart = JSON.parse(localStorage.getItem("cart"));
     }
-    cart.push({
-      ...item,
-      count: 1,
-    });
+    const inCart = cart.find((product) => product._id === item._id);
+    if (inCart) {
+      cart.forEach((product) => {
+        if (product._id === item._id) {
+          product.count++;
+          product.totalPrice += product.price;
+        }
+      });
+    } else {
+      cart.push({
+        ...item,
+        count: 1,
+        totalPrice: item.price,
+      });
+    }
     localStorage.setItem("cart", JSON.stringify(cart));
-    next();
   }
 };
 
@@ -21,13 +31,21 @@ export const loadCart = () => {
   }
 };
 
+export const cartItemsCount = () => {
+  if (typeof window !== undefined) {
+    if (localStorage.getItem("cart")) {
+      const cart = JSON.parse(localStorage.getItem("cart"));
+      return cart.length;
+    }
+  }
+};
 export const removeItemFromCart = (productId) => {
   let cart = [];
   if (typeof window !== undefined) {
     if (localStorage.getItem("cart")) {
       cart = JSON.parse(localStorage.getItem("cart"));
     }
-    cart.map((product, index) => {
+    cart.forEach((product, index) => {
       if (product._id === productId) {
         cart.splice(index, 1);
       }
@@ -44,4 +62,37 @@ export const emptyCart = (next) => {
     localStorage.setItem("cart", JSON.stringify(cart));
     next();
   }
+};
+
+export const increaseItemCount = (id) => {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+
+  cart.forEach((product) => {
+    if (product._id === id) {
+      product.count++;
+      product.totalPrice += product.price;
+    }
+  });
+  localStorage.setItem("cart", JSON.stringify(cart));
+};
+
+export const decreaseItemCount = (id) => {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+
+  cart.forEach((product) => {
+    if (product._id === id) {
+      product.count--;
+      product.totalPrice -= product.price;
+      if (product.count === 0) {
+        cart.forEach((product, index) => {
+          if (product._id === id) {
+            cart.splice(index, 1);
+          }
+        });
+      }
+    } else {
+      return product;
+    }
+  });
+  localStorage.setItem("cart", JSON.stringify(cart));
 };

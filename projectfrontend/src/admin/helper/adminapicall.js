@@ -2,7 +2,8 @@ import { API } from "./../../backend";
 
 //* category calls
 export const createCategory = (userId, token, category) => {
-  return fetch(`${API}/category/create/${userId}`, {
+  // return fetch(`${API}/category/create/${userId}`, {
+  return fetch(`http://localhost:8000/api/category/create/${userId}`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -21,7 +22,7 @@ export const createCategory = (userId, token, category) => {
 ///get all categories
 export const getAllCategories = () => {
   return fetch(`${API}/categories`, {
-    mehtod: "GET",
+    method: "GET",
   })
     .then((response) => {
       return response.json();
@@ -31,7 +32,6 @@ export const getAllCategories = () => {
 
 // update category
 export const updateCategory = (categoryId, userId, token, category) => {
-  console.log("category", category);
   return fetch(`${API}/category/${categoryId}/${userId}`, {
     method: "PUT",
     headers: {

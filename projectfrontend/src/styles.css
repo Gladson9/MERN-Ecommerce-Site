@@ -11,3 +11,18 @@ body {
   background-color: transparent;
   border: none;
 }
+
+.signout {
+  cursor: pointer;
+}
+
+.order-product {
+  min-height: 20rem;
+}
+
+.card-hover:hover {
+  background: #ffffff2d;
+}
+.card-color {
+  background: #ffffff2d;
+}

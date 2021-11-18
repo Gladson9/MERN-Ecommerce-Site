@@ -7,10 +7,11 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
     error: "",
     success: false,
   });
-  const { name, email, password, error, success } = values;
+  const { name, email, password, confirmPassword, error, success } = values;
 
   const handleChange = (name) => (event) => {
     setValues({
@@ -22,23 +23,31 @@ const Signup = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    setValues({ ...values, error: false });
-    signup({ name, email, password })
-      .then((data) => {
-        if (data.error) {
-          setValues({ ...values, error: data.error, success: false });
-        } else {
-          setValues({
-            ...values,
-            name: "",
-            email: "",
-            password: "",
-            error: "",
-            success: true,
-          });
-        }
-      })
-      .catch(console.log("error in signup"));
+    if (password !== confirmPassword) {
+      setValues({
+        ...values,
+        error: "Please make sure your passwords match",
+        success: false,
+      });
+    } else {
+      setValues({ ...values, error: false });
+      signup({ name, email, password })
+        .then((data) => {
+          if (data.error) {
+            setValues({ ...values, error: data.error, success: false });
+          } else {
+            setValues({
+              ...values,
+              name: "",
+              email: "",
+              password: "",
+              error: "",
+              success: true,
+            });
+          }
+        })
+        .catch(console.log("error in signup"));
+    }
   };
 
   const signUpForm = () => {
@@ -71,6 +80,15 @@ const Signup = () => {
                 type="password"
                 value={password}
                 placeholder="Password"
+              />
+            </div>
+            <div className="mb-4 p-0">
+              <input
+                className="form-control rounded-pill px-4"
+                onChange={handleChange("confirmPassword")}
+                type="password"
+                value={confirmPassword}
+                placeholder="Confirm Password"
               />
             </div>
             <button onClick={onSubmit} className="btn-success btn rounded-pill">
