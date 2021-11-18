@@ -1,5 +1,5 @@
 const User = require("../models/user");
-const Order = require("../models/order");
+const { Order } = require("../models/order");
 const e = require("express");
 
 exports.getUserById = (req, res, next, id) => {

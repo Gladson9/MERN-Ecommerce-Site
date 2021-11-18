@@ -15,6 +15,7 @@ const UpdateProduct = ({ match }) => {
   const [values, setValues] = useState({
     name: "",
     author: "",
+    description: "",
     price: "",
     stock: "",
     photo: "",
@@ -30,6 +31,7 @@ const UpdateProduct = ({ match }) => {
   const {
     name,
     author,
+    description,
     price,
     stock,
     categories,
@@ -54,6 +56,7 @@ const UpdateProduct = ({ match }) => {
           ...values,
           name: data.name,
           author: data.author,
+          description: data.description,
           price: data.price,
           category: data.category._id,
           stock: data.stock,
@@ -122,6 +125,7 @@ const UpdateProduct = ({ match }) => {
             ...values,
             name: "",
             author: "",
+            description: "",
             price: "",
             photo: "",
             stock: "",
@@ -164,6 +168,16 @@ const UpdateProduct = ({ match }) => {
           className="form-control"
           placeholder="Author"
           value={author}
+        />
+      </div>
+      <div className="input-group mb-3">
+        <textarea
+          type="text"
+          onChange={handleChange("description")}
+          name="description"
+          className="form-control"
+          placeholder="Description"
+          value={description}
         />
       </div>
       <div className="input-group mb-3">
