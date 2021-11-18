@@ -50,10 +50,10 @@ const StripeCheckout = ({
       body: JSON.stringify(body),
     })
       .then((response) => {
-        console.log("Line 53 Responese", response);
+        // console.log("Line 53 Responese", response);
 
         const { status } = response;
-        console.log("STATUS", status);
+        // console.log("STATUS", status);
         const orderData = {
           products: products,
           transaction_id: response.transaction.id,
@@ -61,7 +61,7 @@ const StripeCheckout = ({
         };
         createOrder(userId, token, orderData);
         emptyCart(() => {
-          console.log("Crash check");
+          // console.log("Crash check");
         });
         setReload(!reload);
       })

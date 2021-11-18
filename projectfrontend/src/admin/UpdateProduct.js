@@ -46,7 +46,7 @@ const UpdateProduct = ({ match }) => {
   const preload = (productId) => {
     // console.log("PRODUCT ID FROM PRELOAD :", productId);
     getProduct(productId).then((data) => {
-      console.log("DATA: ", data);
+      // console.log("DATA: ", data);
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -62,7 +62,7 @@ const UpdateProduct = ({ match }) => {
           stock: data.stock,
           formData: new FormData(),
         });
-        console.log("Values ", values);
+        // console.log("Values ", values);
         // console.log("Categories", categories);
       }
     });

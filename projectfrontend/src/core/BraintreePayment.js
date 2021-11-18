@@ -45,7 +45,7 @@ const BraintreePayment = ({
       processPayment(userId, token, paymentData)
         .then((response) => {
           setInfo({ ...info, success: response.success, loading: false });
-          console.log("PAYMENT SUCCESS");
+          // console.log("PAYMENT SUCCESS");
           const orderData = {
             products: products,
             transaction_id: response.transaction.id,
@@ -54,7 +54,7 @@ const BraintreePayment = ({
 
           createOrder(userId, token, orderData);
           emptyCart(() => {
-            console.log("Crash check");
+            // console.log("Crash check");
           });
           setReload(!reload);
         })
