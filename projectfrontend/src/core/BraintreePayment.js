@@ -77,6 +77,24 @@ const BraintreePayment = ({
       <div>
         {info.clientToken !== null && products.length > 0 ? (
           <div>
+            <div className="card-color rounded py-3 text-center">
+              <p className="fw-bold">USE THESE DETAILS</p>
+              <p className="d-flex justify-content-center align-items-center">
+                <b className="me-1">Card No:</b> 37828224631000
+                <button
+                  className="btn ms-2"
+                  onClick={() =>
+                    navigator.clipboard.writeText("378282246310005")
+                  }
+                >
+                  <i class="bi bi-clipboard text-white fw-bold"></i>
+                </button>
+              </p>
+
+              <p>
+                <b className="me-1">Date:</b> Any future date
+              </p>
+            </div>
             <h3>Braintree Payment</h3>
             <DropIn
               options={{ authorization: info.clientToken }}
@@ -85,7 +103,7 @@ const BraintreePayment = ({
             <button onClick={onPurchase}>Buy</button>
           </div>
         ) : (
-          <h3>Please login or add something to cart</h3>
+          <h3>Add something to cart</h3>
         )}
       </div>
     );

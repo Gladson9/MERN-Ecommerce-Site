@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Menu from "./Menu";
 const Base = ({
   title = "My title",
@@ -7,7 +8,11 @@ const Base = ({
 }) => {
   return (
     <>
-      <h2 className="text-white text-center fw-light my-4 logo">BookBasket</h2>
+      <Link to="/" className="text-decoration-none">
+        <h2 className="text-white text-center fw-light my-4 logo ">
+          BookBasket
+        </h2>
+      </Link>
       <Menu />
       <div className="container">
         <div className="jumbotron text-white text-center">

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { isAuthenticated, signout } from "../auth/helper";
+import { cartItemsCount } from "./helper/cartHelper";
 
 const currentTab = (history, path) => {
   //history is provided by Link
@@ -20,16 +21,7 @@ const Menu = ({ history }) => {
             HOME
           </Link>
         </li>
-        <li className="nav-item mx-2">
-          <Link
-            style={currentTab(history, "/cart")}
-            className="nav-link"
-            to="/cart"
-          >
-            CART
-          </Link>
-        </li>
-        {/* {isAuthenticated() && isAuthenticated().user.role === 0 && (
+        {isAuthenticated() && isAuthenticated().user.role === 0 && (
           <li className="nav-item mx-2">
             <Link
               style={currentTab(history, "/user/dashboard")}
@@ -39,7 +31,7 @@ const Menu = ({ history }) => {
               DASHBOARD
             </Link>
           </li>
-        )} */}
+        )}
         {isAuthenticated() && isAuthenticated().user.role === 1 && (
           <li className="nav-item mx-2">
             <Link
@@ -51,7 +43,18 @@ const Menu = ({ history }) => {
             </Link>
           </li>
         )}
-
+        <li className="nav-item mx-2 position-relative">
+          <Link
+            style={currentTab(history, "/cart")}
+            className="nav-link"
+            to="/cart"
+          >
+            CART
+            <span className="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-danger">
+              {cartItemsCount()}
+            </span>
+          </Link>
+        </li>
         {!isAuthenticated() && (
           <>
             <li className="nav-item mx-2">
@@ -60,7 +63,7 @@ const Menu = ({ history }) => {
                 className="nav-link"
                 to="/signup"
               >
-                SIGNUP
+                SIGN UP
               </Link>
             </li>
             <li className="nav-item mx-2">
@@ -69,7 +72,7 @@ const Menu = ({ history }) => {
                 className="nav-link"
                 to="/signin"
               >
-                SIGNIN
+                SIGN IN
               </Link>
             </li>
           </>
@@ -78,7 +81,7 @@ const Menu = ({ history }) => {
         {isAuthenticated() && (
           <li className="nav-item mx-2">
             <span
-              className="nav-link text-danger"
+              className="signout nav-link text-danger"
               onClick={() => {
                 signout(() => {
                   history.push("/");

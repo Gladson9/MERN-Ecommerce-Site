@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import ImageHelper from "./helper/ImageHelper";
 import { addItemToCart, removeItemFromCart } from "./helper/cartHelper";
 
@@ -10,25 +10,24 @@ const Card = ({
   setReload = (f) => f,
   reload = undefined,
 }) => {
-  const [redirect, setredirect] = useState(false);
   const [count, setCount] = useState(product.count);
   const cardTitle = product ? product.name : "A photo from pexels";
   const cardAuthor = product ? product.author : "Default Author";
   const cardPrice = product ? product.price : "Default Price";
 
   const addToCart = () => {
-    addItemToCart(product, () => setredirect(true));
-  };
-  const getRedirect = (redirect) => {
-    if (redirect) {
-      return <Redirect to="/cart" />;
-    }
+    addItemToCart(product);
+    setReload(!reload);
   };
   const showAddToCart = (AddToCart) => {
     return (
       AddToCart && (
-        <button onClick={addToCart} className="btn btn-warning">
-          Add to Cart
+        <button
+          disabled={product.stock === 0}
+          onClick={addToCart}
+          className="btn btn-warning"
+        >
+          {product.stock !== 0 ? "Add to Cart" : "Out of Stock"}
         </button>
       )
     );
@@ -50,17 +49,23 @@ const Card = ({
   };
   return (
     <div className="row card text-white">
-      <div className="col-10 my-3">
-        {getRedirect(redirect)}
-        <ImageHelper product={product} />
-        <div className=" ms-1">{cardTitle}</div>
-        <div className=" ms-1">
-          By <span className="text-white-50"> {cardAuthor}</span>
-        </div>
-        <p className=" ms-2 fw-bold text-danger fs-4">$ {cardPrice}</p>
-        <div className="col-12">
-          <div>{showAddToCart(AddToCart)}</div>
-          <div>{showRemoveFromCart(removeFromCart)}</div>
+      <div className="col-10 my-3 ">
+        <div className="py-2 card-hover rounded">
+          <Link
+            style={{ textDecoration: "none" }}
+            to={`/products/${product._id}`}
+          >
+            <ImageHelper product={product} />
+            <div className="text-white ms-1">{cardTitle}</div>
+            <div className="text-white ms-1">
+              By <span className="text-white-50"> {cardAuthor}</span>
+            </div>
+            <p className=" ms-2 fw-bold text-danger fs-4">$ {cardPrice}</p>
+          </Link>
+          <div className="col-12">
+            <div>{showAddToCart(AddToCart)}</div>
+            <div>{showRemoveFromCart(removeFromCart)}</div>
+          </div>
         </div>
       </div>
     </div>

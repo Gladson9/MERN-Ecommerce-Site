@@ -54,9 +54,9 @@ userSchema
     this.encry_password = this.securePassword(password);
   })
   .get(function () {
-    console.log(
-      "This if from getter from user model.... Remember to remove this line if you get this message"
-    );
+    // console.log(
+    //   "This if from getter from user model.... Remember to remove this line if you get this message"
+    // );
     return this._password;
   });
 

@@ -18,7 +18,13 @@ const StripeCheckout = ({
     error: "",
     address: "",
   });
-
+  const [shippingAddress, setShippingAddress] = useState({
+    line1: "G L Compound, Near GPM College",
+    line2: "",
+    city: "Kasaragod",
+    country: "India",
+    postal_code: 671323,
+  });
   const token = isAuthenticated() && isAuthenticated().token;
   const userId = isAuthenticated() && isAuthenticated().user._id;
 
@@ -44,14 +50,22 @@ const StripeCheckout = ({
       body: JSON.stringify(body),
     })
       .then((response) => {
-        console.log(response);
+        console.log("Line 53 Responese", response);
 
         const { status } = response;
         console.log("STATUS", status);
-        emptyCart();
-        // createOrder
+        const orderData = {
+          products: products,
+          transaction_id: response.transaction.id,
+          amount: response.transaction.amount,
+        };
+        createOrder(userId, token, orderData);
+        emptyCart(() => {
+          console.log("Crash check");
+        });
+        setReload(!reload);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("Stripe 68", err));
   };
   const showStripeButton = () => {
     return isAuthenticated() ? (
@@ -60,8 +74,8 @@ const StripeCheckout = ({
         token={makePayment}
         amount={getFinalPrice() * 100}
         name="Buy Products"
-        shippingAddress
-        billingAddress
+        email="guest@bookbasket.com"
+        // shippingAddress
       >
         <button className="btn btn-success">Pay with Stripe</button>
       </StripeCheckoutButton>

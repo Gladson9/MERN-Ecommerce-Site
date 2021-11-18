@@ -25,7 +25,29 @@ const Signin = () => {
     });
   };
   const onSubmit = (event) => {
+    // console.log(values);
     event.preventDefault();
+    setValues({ ...values, error: false, loading: true });
+    signin({ email, password })
+      .then((data) => {
+        if (data.error) {
+          setValues({ ...values, error: data.error, loading: false });
+        } else {
+          authenticate(data, () => {
+            setValues({
+              ...values,
+              didRedirect: true,
+            });
+          });
+        }
+      })
+      .catch(console.log("signin request failed"));
+  };
+
+  const handleGuestLogin = (e) => {
+    e.preventDefault();
+    const email = "guest@bookbasket.com";
+    const password = "guest@bookbasket123";
     setValues({ ...values, error: false, loading: true });
     signin({ email, password })
       .then((data) => {
@@ -107,6 +129,12 @@ const Signin = () => {
             <button onClick={onSubmit} className="btn-success btn rounded-pill">
               Submit
             </button>
+            <button
+              onClick={handleGuestLogin}
+              className="btn-primary btn rounded-pill mt-4"
+            >
+              Login as Guest
+            </button>
           </form>
         </div>
       </div>
@@ -114,7 +142,7 @@ const Signin = () => {
   };
 
   return (
-    <Base title="SignIn">
+    <Base title="Sign In">
       {loadingMessage()}
       {errorMessage()}
       {signInForm()}
