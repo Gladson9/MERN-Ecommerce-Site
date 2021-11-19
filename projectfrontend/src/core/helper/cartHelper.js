@@ -7,7 +7,7 @@ export const addItemToCart = (item) => {
     const inCart = cart.find((product) => product._id === item._id);
     if (inCart) {
       cart.forEach((product) => {
-        if (product._id === item._id) {
+        if (product._id === item._id && product.count < product.stock) {
           product.count++;
           product.totalPrice += product.price;
         }
@@ -68,7 +68,7 @@ export const increaseItemCount = (id) => {
   let cart = JSON.parse(localStorage.getItem("cart"));
 
   cart.forEach((product) => {
-    if (product._id === id) {
+    if (product._id === id && product.count < product.stock) {
       product.count++;
       product.totalPrice += product.price;
     }
