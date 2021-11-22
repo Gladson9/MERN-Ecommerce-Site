@@ -87,7 +87,7 @@ const BraintreePayment = ({
                     navigator.clipboard.writeText("378282246310005")
                   }
                 >
-                  <i class="bi bi-clipboard text-white fw-bold"></i>
+                  <i className="bi bi-clipboard text-white fw-bold"></i>
                 </button>
               </p>
 

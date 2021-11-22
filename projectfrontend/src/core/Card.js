@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Link, Redirect } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import ImageHelper from "./helper/ImageHelper";
-import { addItemToCart, removeItemFromCart } from "./helper/cartHelper";
+import { addItemToCart, itemInCart } from "./helper/cartHelper";
 
 const Card = ({
   product,
@@ -27,24 +27,20 @@ const Card = ({
           onClick={addToCart}
           className="btn btn-warning"
         >
-          {product.stock !== 0 ? "Add to Cart" : "Out of Stock"}
+          {itemInCart(product._id)
+            ? showGoToCart()
+            : product.stock !== 0
+            ? "Add to Cart"
+            : "Out of Stock"}
         </button>
       )
     );
   };
-  const showRemoveFromCart = (removeFromCart) => {
+  const showGoToCart = () => {
     return (
-      removeFromCart && (
-        <button
-          onClick={() => {
-            removeItemFromCart(product._id);
-            setReload(!reload);
-          }}
-          className="btn btn-danger"
-        >
-          Remove from cart
-        </button>
-      )
+      <Link style={{ textDecoration: "none", color: "black" }} to="/cart">
+        Go to cart
+      </Link>
     );
   };
   return (
@@ -64,7 +60,6 @@ const Card = ({
           </Link>
           <div className="col-12">
             <div>{showAddToCart(AddToCart)}</div>
-            <div>{showRemoveFromCart(removeFromCart)}</div>
           </div>
         </div>
       </div>

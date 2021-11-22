@@ -96,3 +96,8 @@ export const decreaseItemCount = (id) => {
   });
   localStorage.setItem("cart", JSON.stringify(cart));
 };
+
+export const itemInCart = (id) => {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  return cart.some((product) => product._id === id);
+};

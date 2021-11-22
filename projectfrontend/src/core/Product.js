@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getProduct } from "../admin/helper/adminapicall";
 import Menu from "./Menu";
 import ImageHelper from "./helper/ImageHelper";
-import { addItemToCart } from "./helper/cartHelper";
+import { addItemToCart, itemInCart } from "./helper/cartHelper";
+import { Link } from "react-router-dom";
 
 const Product = ({ match }) => {
   const [values, setValues] = useState({
@@ -67,6 +68,14 @@ const Product = ({ match }) => {
     setReload(!reload);
   };
 
+  const showGoToCart = () => {
+    return (
+      <Link style={{ textDecoration: "none", color: "black" }} to="/cart">
+        Go to cart
+      </Link>
+    );
+  };
+
   useEffect(() => {
     preload(match.params.productId);
   }, [reload]);
@@ -104,7 +113,7 @@ const Product = ({ match }) => {
                 className="btn btn-warning rounded-pill"
                 style={{ width: "100%" }}
               >
-                Add to Cart
+                {itemInCart(_id) ? showGoToCart() : "Add to Cart"}
               </button>
             </div>
           </div>
