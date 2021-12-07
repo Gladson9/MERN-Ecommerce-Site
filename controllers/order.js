@@ -45,9 +45,10 @@ exports.getOrderStatus = (req, res) => {
 };
 
 exports.updateStatus = (req, res) => {
-  Order.update(
+  Order.findOneAndUpdate(
     { _id: req.body.orderId },
-    { $set: { status: req.body.status } },
+    { status: req.body.status },
+    { new: true },
     (err, order) => {
       if (err) {
         return res.status(400).json({
