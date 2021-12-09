@@ -69,7 +69,7 @@ const Modal = ({ order, reload, setReload }) => {
             <div>
               <p>
                 <span className="fw-bold">Customer Name:</span>{" "}
-                {order.user.name}
+                {order?.user.name}
               </p>
             </div>
             <table className="table">
