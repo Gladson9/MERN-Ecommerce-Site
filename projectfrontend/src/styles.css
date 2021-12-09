@@ -28,3 +28,16 @@ body {
 .card-color {
   background: #ffffff2d;
 }
+
+.cancelled {
+  color: red;
+}
+.received {
+  color: #ff8600;
+}
+.delivered {
+  color: #4bfc15;
+}
+.processing {
+  color: #178dfc;
+}

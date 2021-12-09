@@ -128,7 +128,7 @@ export const getProduct = (productId) => {
     method: "GET",
   })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       return response.json();
     })
     .catch((err) => console.log("getProduct: ", err));
@@ -147,5 +147,46 @@ export const updateProduct = (productId, userId, token, product) => {
     .then((response) => {
       return response.json();
     })
+    .catch((err) => console.log(err));
+};
+
+// get all orders
+export const getAllOrders = (userId, token) => {
+  return fetch(`${API}/order/all/${userId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
+};
+
+// get order status
+export const getOrderStatus = (userId, token) => {
+  return fetch(`${API}/order/status/${userId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
+};
+
+// update order status
+
+export const updateStatus = (userId, token, orderId, status) => {
+  const value = { orderId: orderId, status: status };
+  return fetch(`${API}/order/${orderId}/status/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(value),
+  })
+    .then((response) => response.json())
     .catch((err) => console.log(err));
 };
