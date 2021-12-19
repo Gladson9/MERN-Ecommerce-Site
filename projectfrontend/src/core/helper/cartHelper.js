@@ -98,6 +98,8 @@ export const decreaseItemCount = (id) => {
 };
 
 export const itemInCart = (id) => {
-  let cart = JSON.parse(localStorage.getItem("cart"));
+  let cart = localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [];
   return cart.some((product) => product._id === id);
 };
